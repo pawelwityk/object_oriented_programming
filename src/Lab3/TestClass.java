@@ -10,6 +10,9 @@ public class TestClass {
         System.out.println((counter + ". " + "[" + timeInMillis + "]"));
     }
     public static void main(String[] args) {
+        if (args.length == 0){
+            return;
+        }
         int num = Integer.parseInt(args[0]);
         TestClass [] objects = new TestClass[num];
         for (int i=0; i<num; i++) {
