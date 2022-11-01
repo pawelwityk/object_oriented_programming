@@ -17,14 +17,11 @@ public class LineCounterPane {
                 readFile.nextLine();
                 i++;
             }
-            System.out.println("Liczba wierszy w pliku " + fileToRead +  " wynosi: " + i);
+            JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + fileToRead + " wynosi: " + i, "Informacja" ,JOptionPane.INFORMATION_MESSAGE);
 
         }
         catch(FileNotFoundException exception){
-            System.out.println("Plik nie istnieje !");
-        }
-        catch(ArrayIndexOutOfBoundsException exception){
-            System.out.println("Nie podano pliku, bądź podano kilka plików naraz !");
+            JOptionPane.showMessageDialog(null, "Plik nie istnieje !", "BŁĄD !" ,JOptionPane.ERROR_MESSAGE);
         }
     }
 }
