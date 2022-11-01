@@ -25,6 +25,6 @@ public class LineCounterPane {
             i++;
         }
         JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + fileToRead + " wynosi: " + i, "Informacja" ,JOptionPane.INFORMATION_MESSAGE);
-
+        System.exit(0);
     }
 }
