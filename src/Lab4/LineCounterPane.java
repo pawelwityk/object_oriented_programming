@@ -8,20 +8,23 @@ import javax.swing.JOptionPane;
 
 public class LineCounterPane {
     public static void main(String[] args){
+        FileReader file = null;
+        String fileToRead = JOptionPane.showInputDialog("Podaj nazwę pliku:");
         try{
-            String fileToRead = JOptionPane.showInputDialog("Podaj nazwę pliku:");
-            FileReader file = new FileReader(fileToRead); // reading file
-            Scanner readFile = new Scanner(file); //
-            int i = 0;
-            while(readFile.hasNextLine()){
-                readFile.nextLine();
-                i++;
-            }
-            JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + fileToRead + " wynosi: " + i, "Informacja" ,JOptionPane.INFORMATION_MESSAGE);
-
+            file = new FileReader(fileToRead); // reading file
         }
         catch(FileNotFoundException exception){
             JOptionPane.showMessageDialog(null, "Plik nie istnieje !", "BŁĄD !" ,JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
+
+        Scanner readFile = new Scanner(file); //
+        int i = 0;
+        while(readFile.hasNextLine()){
+            readFile.nextLine();
+            i++;
+        }
+        JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + fileToRead + " wynosi: " + i, "Informacja" ,JOptionPane.INFORMATION_MESSAGE);
+
     }
 }
