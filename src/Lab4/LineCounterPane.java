@@ -10,7 +10,6 @@ public class LineCounterPane {
     public static void main(String[] args){
         try{
             String fileToRead = JOptionPane.showInputDialog("Podaj nazwę pliku:");
-            System.out.println(fileToRead);
             FileReader file = new FileReader(fileToRead); // reading file
             Scanner readFile = new Scanner(file); //
             int i = 0;
