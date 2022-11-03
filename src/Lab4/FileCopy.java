@@ -3,7 +3,6 @@ package Lab4;
 import java.io.*;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class FileCopy{
