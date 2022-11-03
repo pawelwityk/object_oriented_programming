@@ -4,6 +4,8 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 public class FileCopy{
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
@@ -30,7 +32,7 @@ public class FileCopy{
             System.out.println("Nie można nadpisać pliku " + srcFile.getName() + " !");
             System.exit(1);
         }
-        if (!dstFile.canWrite() && !dstFile.isDirectory()) {
+        if (dstFile.isFile() && !dstFile.canWrite()) {
             System.out.println("Brak wymaganych uprawnień do zapisu pliku " + dstFile.getName() + " !");
             System.exit(1);
         }
@@ -42,10 +44,10 @@ public class FileCopy{
             dstFile = new File(Paths.get(dstFile.getName()) + "/" + srcFile.getName());
         }
         try {
-            Files.copy(srcFile.toPath(), dstFile.toPath());
+            Files.copy(srcFile.toPath(), dstFile.toPath(), REPLACE_EXISTING);
         }
         catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Błąd związany z: " + e.getMessage());
             System.exit(1);
         }
     }
