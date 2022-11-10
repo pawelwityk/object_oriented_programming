@@ -2,7 +2,6 @@ package Lab4;
 
 import java.io.*;
 import java.nio.file.AccessDeniedException;
-import java.util.*;
 import java.net.*;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -14,23 +13,9 @@ public class FileAndURLCopy{
             System.out.println("Za mało argumentów wywołania programu !\n" +  "Przykład użycia: 'java FileCopy <żródło> <cel>'.");
             System.exit(1);
         }
-        File dstFile = new File(args[1]);
+
         if (args[0].startsWith("http") || args[0].startsWith("https")) {
 
-            if (dstFile.exists() && !dstFile.canWrite()) {
-                System.out.println("Nie można nadpisać pliku " + dstFile.getName() + " !");
-                System.exit(1);
-            }
-            if (dstFile.isFile() && !dstFile.canWrite()) {
-                System.out.println("Brak wymaganych uprawnień do zapisu pliku " + dstFile.getName() + " !");
-                System.exit(1);
-            }
-            if (dstFile.isDirectory()) {
-                if(!dstFile.canWrite()) {
-                    System.out.println("Brak uprawnień do katalogu " + dstFile.getName() + " !");
-                    System.exit(1);
-                }
-            }
             URLConnection conn = null;
             InputStream in1 = null;
             URL url = null;
@@ -49,14 +34,23 @@ public class FileAndURLCopy{
                 System.exit(1);
             }
             int i;
-            do {
-               i = in1.read();
-               System.out.print((char)i);
-            } while(i != -1);
+
+            try {
+                FileOutputStream dstFile = new FileOutputStream(args[1]);
+                byte[] array = in1.readAllBytes();
+                dstFile.write(array);
+                dstFile.close();
+            }
+            catch(IOException e) {
+                System.out.println("Błąd kopiowania");
+                System.exit(1);
+            }
+
         }
         else {
 
             File srcFile = new File(args[0]);
+            File dstFile = new File(args[1]);
 
             if (!srcFile.exists()) {
                 System.out.println("Plik " + srcFile.getName() + " nie istnieje !");
