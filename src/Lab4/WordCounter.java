@@ -30,20 +30,23 @@ public class WordCounter {
     private static int[] getData(FileReader file) throws IOException {
         BufferedReader readFile = new BufferedReader(file);
         int lineCount = 0, charCount = 0, wordCount = 0;
-        String line = "";
+        String line;
 
         while((line = readFile.readLine()) != null) {
             lineCount++;
             wordCount += line.split("\\s+").length;
             charCount += line.length();
         }
-        int[] result  = {lineCount, charCount, wordCount};
-        return result;
+        return new int[]{lineCount, charCount, wordCount};
     }
     public static void main(String[] args) throws IOException {
-        FileReader file = null;
+        FileReader file;
         int[] result = null;
         String filename = getFilename(args);
+        if (filename == null) {
+            System.out.println("Nie podano pliku !");
+            System.exit(1);
+        }
         try{
             file = new FileReader(filename); // reading file
             result = getData(file);
