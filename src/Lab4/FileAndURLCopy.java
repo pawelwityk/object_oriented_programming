@@ -14,7 +14,7 @@ public class FileAndURLCopy{
             System.exit(1);
         }
 
-        if (args[0].startsWith("http") || args[0].startsWith("https")) {
+        if (args[0].startsWith("http")) {
 
             URLConnection conn;
             InputStream in1 = null;
