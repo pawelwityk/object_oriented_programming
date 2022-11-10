@@ -16,7 +16,7 @@ public class FileAndURLCopy{
 
         if (args[0].startsWith("http") || args[0].startsWith("https")) {
 
-            URLConnection conn = null;
+            URLConnection conn;
             InputStream in1 = null;
             URL url = null;
 
@@ -33,7 +33,6 @@ public class FileAndURLCopy{
                 System.out.println("Brak dostępu do " + url);
                 System.exit(1);
             }
-            int i;
 
             try {
                 FileOutputStream dstFile = new FileOutputStream(args[1]);
